@@ -16,7 +16,7 @@ function createLib(isString, isNumber, prependToString, isInteger) {
     }
 
     if (isNumber(str)) {
-      return (isInteger(str)) ? str*100 : ~~(str*100);
+      return ~~(str*power);
     }
 
     if (!isString(str)) {

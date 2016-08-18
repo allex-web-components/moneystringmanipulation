@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/allex-web-components/moneystringmanipulation#readme",
   "dependencies": {
-    "allex_moneystringmanipulationlowlevellib": "^2.0.1"
+    "allex_moneystringmanipulationlowlevellib": "^2.0.2"
   }
 }
