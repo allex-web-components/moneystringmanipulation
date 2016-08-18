@@ -15,7 +15,7 @@ angular.module ('allex__web_moneystringmanipulationcomponent', []);
   module.filter('allex_moneystringmanipulation_fromMoney', function () {
     return function (input, decimals) {
       if (!allexlib.isNumber(decimals)) throw new Error('decimals must be a number: '+decimals);
-      if (!allexlib.isInteger(input)) throw new Error('input is not a number: '+input);
+      if (!allexlib.isInteger(input)) return input;
       return moneystringmanipulation.fromMoney (parseInt (input, 10), decimals);
     };
   });

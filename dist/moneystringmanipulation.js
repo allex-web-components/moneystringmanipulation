@@ -1,7 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-function createLib(isString, isNumber, prependToString) {
+function createLib(isString, isNumber, prependToString, isInteger) {
   'use strict';
-  //TODO: introduce a bit more strict checks on input params and possible conversions string <-> integer ...
 
   function toMoneyError(str, decimalplaces) {
     return new Error('Money string '+str+' has to be a positive decimal number with '+decimalplaces+' decimal places');
@@ -10,9 +9,16 @@ function createLib(isString, isNumber, prependToString) {
 
   function toMoney (str, power, regexp, decimalplaces) {
     var parts;
+    if (!decimalplaces) throw new Error('No decimalplaces given');
+    if (!(isNumber(decimalplaces) && isInteger(decimalplaces) && decimalplaces > 0)) throw new Error ('decimalplaces should be a positive integer: '+decimalplaces);
     if (!power) {
-      throw new Error('MoneyStringManipulator already destroyed');
+      throw new Error('MoneyStringManipulator got no power');
     }
+
+    if (isNumber(str)) {
+      return (isInteger(str)) ? str*100 : ~~(str*100);
+    }
+
     if (!isString(str)) {
       throw new Error('Input parameter has to be a string');
     }
@@ -31,7 +37,11 @@ function createLib(isString, isNumber, prependToString) {
     if (!power) {
       throw new Error('MoneyStringManipulator already destroyed');
     }
-    if (!(isNumber(num) && num>=0 && (~~(num) === num))) {
+
+    if (!isInteger(num)) throw new Error('num has to be a positive integer');
+    if (!isNumber(num)) num = parseInt(num,10);
+
+    if (!(num>=0 && (~~(num) === num))) {
       throw new Error('Input parameter has to be a positive integer');
     }
     return (~~(num/power)+'.'+prependToString('0', decimalplaces, ''+num%power));
@@ -73,6 +83,6 @@ function createLib(isString, isNumber, prependToString) {
 module.exports = createLib;
 
 },{}],2:[function(require,module,exports){
-ALLEX.LOW_LEVEL_LIBS['allex_moneystringmanipulationlowlevellib'] = require('allex_moneystringmanipulationlowlevellib')(ALLEX.lib.isString, ALLEX.lib.isNumber, ALLEX.lib.prependToString);
+ALLEX.LOW_LEVEL_LIBS['allex_moneystringmanipulationlowlevellib'] = require('allex_moneystringmanipulationlowlevellib')(ALLEX.lib.isString, ALLEX.lib.isNumber, ALLEX.lib.prependToString, ALLEX.lib.isInteger);
 
 },{"allex_moneystringmanipulationlowlevellib":1}]},{},[2]);
