@@ -1,11 +1,6 @@
 {
-  "js": {
-    "angular": [
-      "src/angular.js"
-    ]
-  },
   "browserify" : {
-    "dist/moneystringmanipulation.js" : "./src/browserify.js"
+    "dist/lib.js" : "./src/browserify.js"
   },
   "exclude": {
   },
