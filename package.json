@@ -1,7 +1,7 @@
 {
   "name": "allex_moneystringmanipulationwebcomponent",
-  "version": "1.0.0",
-  "description": "Bower component for moneystringmanipulation low level lib",
+  "version": "1.0.1",
+  "description": "AllexJS web component for moneystringmanipulation low level lib",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

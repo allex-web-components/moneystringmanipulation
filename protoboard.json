@@ -4,6 +4,7 @@
   },
   "exclude": {
   },
+  "actualtarget": ["dist", "lib.js"],
   "protoboard": {
     "role": "web_component"
   }
